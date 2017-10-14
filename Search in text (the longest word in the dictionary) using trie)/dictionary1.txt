@@ -1,0 +1,6 @@
+sort 2000
+bubble sort 0
+bubble sort i -9999
+c 8000
+plus 7000
+c plus plus 3000

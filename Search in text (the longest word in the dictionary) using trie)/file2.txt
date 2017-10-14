@@ -1,0 +1,6 @@
+sort
+A bubble sort, a sorting algorithm that continuously steps through a list, swapping items until they appear in the correct order.
+Main article: Bubble sort
+
+Bubble sort is a simple sorting algorithm.
+c plus pl c plus plus c plus . plus
