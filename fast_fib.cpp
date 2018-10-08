@@ -8,7 +8,7 @@ T pow(T a, uint64_t n)
 	while (n--)
 		res *= a;
 
-	return a;
+	return res;
 }
 
 template<typename T>
