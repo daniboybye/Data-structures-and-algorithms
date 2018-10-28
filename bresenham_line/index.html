@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="draw.css">
+        <script type="application/javascript" src="draw.js"></script>
+    </head>
+
+    <body>
+        <div class="content">
+            <table class="form">
+                <tr>
+                    <td>Grid size:</td>
+                    <td><input type="number" id="grid_size" value="100"></td>
+                </tr>
+                <tr>
+                    <td>Speed:</td>
+                    <td><input type="number" id="speed" value="250"></td>
+                </tr>
+                <tr >
+                    <td>Pixel size:</td>
+                    <td><input type="range" id="pixel_size" min="3" max="30"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button onclick="initGrid()">Create Grid</button></td>
+                </tr>
+            </table>
+            <table id="grid"></table>
+        </div>
+    </body>
+</html>

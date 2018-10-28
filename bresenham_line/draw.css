@@ -1,0 +1,14 @@
+.content {
+    margin: auto;
+    padding: 5px;
+}
+
+#grid {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+#grid tbody tr, td {
+    border: 1px solid black;
+}
+
