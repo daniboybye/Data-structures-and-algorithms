@@ -2,7 +2,7 @@
 #include <iostream>
 
 KongaCollection::KongaCollection() {
-	//по условие имаме една празна опашка в началото
+	//РїРѕ СѓСЃР»РѕРІРёРµ РёРјР°РјРµ РµРґРЅР° РїСЂР°Р·РЅР° РѕРїР°С€РєР° РІ РЅР°С‡Р°Р»РѕС‚Рѕ
 	collection.push_back(Konga());
 }
 
@@ -38,7 +38,7 @@ bool studentNameIs(const Student& st, const std::string& name) {
 }
 
 /*
-	Различното подаване на аргументи при двата варианта на split_if
+	Р Р°Р·Р»РёС‡РЅРѕС‚Рѕ РїРѕРґР°РІР°РЅРµ РЅР° Р°СЂРіСѓРјРµРЅС‚Рё РїСЂРё РґРІР°С‚Р° РІР°СЂРёР°РЅС‚Р° РЅР° split_if
 */
 
 void KongaCollection::remove(const std::string& name, int index) {
@@ -57,8 +57,8 @@ void KongaCollection::remove_with_lambda(const std::string& name, int index) {
 }
 
 /*
-	извикваме метода split_if на опашката
-	и след това popFront() на новата опакта
+	РёР·РІРёРєРІР°РјРµ РјРµС‚РѕРґР° split_if РЅР° РѕРїР°С€РєР°С‚Р°
+	Рё СЃР»РµРґ С‚РѕРІР° popFront() РЅР° РЅРѕРІР°С‚Р° РѕРїР°РєС‚Р°
 */
 
 void KongaCollection::after_split(int index) {
