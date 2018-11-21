@@ -1,8 +1,8 @@
 #include <iostream>
-#include "KongaSet.h"
+#include "KongaCollection.h"
 
 void menu() {
-	KongaSet set;
+	KongaCollection collection;
 	
 	std::string command;
 	std::string name;
@@ -17,33 +17,33 @@ void menu() {
 		if (command == "append") {
 			std::cin >> name >> uni >> index;
 
-			if (!set.append(Student(name, uni), index)) {
+			if (!collection.append(Student(name, uni), index)) {
 				std::cout << "Incompatible people" << std::endl;
 			}
 		}
 		else if (command == "removeFirst") {
 			std::cin >> index;
 
-			set.removeFirst(index);
+			collection.removeFirst(index);
 		}
 		else if (command == "removeLast") {
 			std::cin >> index;
 
-			set.removeLast(index);
+			collection.removeLast(index);
 		}
 		else if (command == "merge") {
 			std::cin >> index >> secondIndex;
 
-			if (!set.merge(index, secondIndex)) {
+			if (!collection.merge(index, secondIndex)) {
 				std::cout << "Incompatible people" << std::endl;
 			}
 		}
 		else if (command == "print") {
-			set.print();
+			collection.print();
 		}
 		else if (command == "remove") {
 			std::cin >> name >> index;
-			set.remove(name, index);
+			collection.remove(name, index);
 		}
 		else if (command == "quit") {
 			return;
@@ -51,7 +51,7 @@ void menu() {
 		else {
 			std::cout << "Invalid command" << std::endl;
 		}
-	} while (!set.empty());
+	} while (!collection.empty());
 }
 
 int main() {

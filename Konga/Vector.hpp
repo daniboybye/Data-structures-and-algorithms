@@ -69,14 +69,14 @@ public:
 	}
 
 private:
-	Data * data;
+	Data* data;
 	int size;
 	int capacity;
 
 	void copyFrom(const Vector& other) {
 		size = other.size;
 		capacity = other.capacity;
-		data = capacity ? new Data[capacity] : nullptr;;
+		data = capacity ? new Data[capacity] : nullptr;
 
 		for (int i = 0; i < size; ++i) {
 			data[i] = other.data[i];

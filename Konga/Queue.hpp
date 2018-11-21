@@ -59,6 +59,11 @@ public:
 		return tail->value;
 	}
 
+	void clear() {
+		clean();
+		head = tail = nullptr;
+	}
+
 	void pushBack(const Data& value) {
 		if (empty()) {
 			tail = head = new Node(value);
@@ -107,46 +112,89 @@ public:
 		other.head = other.tail = nullptr;
 	}
 
+	/*
+		Методът split_if приема като аргумент функция, 
+		която трябва да приема като единствен аргумент Data
+		и да връща true за елемента, от който нататък искаме да разделим опашката.
+
+		Аргументът на UnaryPredicate може да бъде от тип: Data, const Data, const Data&, Data&.
+
+		Така променяйки аргумента на функцията split_if, 
+		можем да разделяме опашката: по име на студент, по факултетен номер на студент.
+		Ако имаме опашка от тип std::string,
+		може да я разделим от първия елемент, 
+		който има за префикс "konga".
+		
+		Това е добра практика, защото кода ни е лесно преизпозваем.
+	*/
+
 	template<class UnaryPredicate>
-	Queue* split_if(UnaryPredicate p) {
+	void split_if(Queue& queue, UnaryPredicate p) {
+		queue.clean();
+
 		for (Node* i = head; i; i = i->next) {
 			if (p(i->value)) {
 
+				queue.head = i;
+				queue.tail = tail;
+				
 				if (i == head) {
-					Node* newQueueTail = tail;
 					head = tail = nullptr;
-					return new Queue(i, newQueueTail);
 				}
-
-				Node* newQueueTail = tail;
-				tail = i->prev;
-				tail->next = i->prev = nullptr;
-				return new Queue(i, newQueueTail);
+				else {
+					tail = i->prev;
+					tail->next = i->prev = nullptr;
+				}
+				return;
 			}
 		}
-		return nullptr;
+		queue.head = queue.tail = nullptr;
 	}
 
+	/*
+		Тук имаме опростен вариант на горната функция,
+		с разликата, че се появява един допълнителен аргумент.
+		
+		С допълнителния аргумент можем да използваме
+		нашия предикат без "специални техники".
+		Погледнете извикването на функциите split_if в KongaCollection.cpp.
+	*/
+
 	template<class T, class BinaryPredicate>
-	Queue* split_if(T value, BinaryPredicate p) {
+	void split_if(Queue& queue, T value, BinaryPredicate p) {
+		queue.clean();
+
 		for (Node* i = head; i; i = i->next) {
 			if (p(i->value, value)) {
 
-				if (i == head) {
-					Node* newQueueTail = tail;
-					head = tail = nullptr;
-					return new Queue(i, newQueueTail);
-				}
+				queue.head = i;
+				queue.tail = tail;
 
-				Node* newQueueTail = tail;
-				tail = i->prev;
-				tail->next = i->prev = nullptr;
-				return new Queue(i, newQueueTail);
+				if (i == head) {
+					head = tail = nullptr;
+				}
+				else {
+					tail = i->prev;
+					tail->next = i->prev = nullptr;
+				}
+				return;
 			}
 		}
-		return nullptr;
+		queue.head = queue.tail = nullptr;
 	}
 	
+	/*
+		Променяйки аргумента имаме фунция, 
+		която отпечатва елементите на стандартния изход
+		или
+		ги сериализира във файл.
+
+		Забележете, че тук функцията не е template,
+		защото ще позвалим подаването на фунцкии от тип void(Data&),
+		които могат да променят нашите елементи.
+		(това, че методът е const не ни предпазва от това!!!)
+	*/
+
 	void for_each(void(*f)(const Data&)) const {
 		for (Node* i = head; i; i = i->next) {
 			f(i->value);

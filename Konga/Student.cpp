@@ -34,6 +34,7 @@ bool Student::tolerate(const Student& other) const {
 
 
 void printStudent(const Student& student) {
+	//спестяваме си условни конструкции
 	const char* universities[] = { "FMI", "TU" , "UNSS", "UNKNOW" };
 	std::cout << "-(" << student.name << ", " << universities[student.uni] << ")-";
 }
