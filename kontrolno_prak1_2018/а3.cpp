@@ -58,12 +58,13 @@ std::vector<int> getPath(Node* root, int a, int b) {
 	find_path(root, a, path_a);
 	find_path(root, b, path_b);
 
-	//дали и двата елемента си срещат в дървото
+	//дали и двата елемента се срещат в дървото
 	if (path_a.size() && path_b.size()) {
 		size_t i = 0;
 		for (; i < std::min(path_a.size(), path_b.size()) && path_a[i] == path_b[i]; ++i);
 		--i;
-		//елементър path_a[i] (или path_b[i]) е най-ниският им общ родител
+		//елементър path_a[i] (или path_b[i]) е най-ниският им общ родител LCA
+		//(последният общ елемент в пътищата от корена до елементите)
 
 		//резултатът е обединиение на пътя от А до LCA и пътя от LCA до B
 
