@@ -23,9 +23,6 @@ void get_between_help(Node& node, int a, int b, std::vector<Node*>& res) {
 	for (size_t i = 0; i < node.children.size(); ++i) {
 		get_between_help(node.children[i], a, b, res);
 	}
-	/*for (auto it : root->children) {
-		get_between_help(it, a, b, res);
-	}*/
 }
 
 //O(N)
