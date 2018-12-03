@@ -72,18 +72,26 @@ Node* get_largest_bst_subtree(Node* root) {
 	return count(left) > count(right) ? left : right;
 }
 
-//struct Pair {
-//	Node* first;
-//	int second;
-//};
-//В first пазим указател към корена на поддървото
-//В second пазим броя елементи в това поддърво
-std::pair<Node*, int> get_largest_bst_subtree_help(Node* root) {
+struct Tree{
+	Node* root;
+	int count;
+	int min;
+	int max;
+	
+	Tree(Node* root = nullptr, int count = 0, int min = std::numeric_limits<int>::min(), int max = std::numeric_limits<int>::max())
+		: root(root)
+		, count(count)
+		, min(min)
+		, max(max)
+		{}
+};
+Tree get_largest_bst_subtree_help(Node* root) {
 	if (is_leaf(root)) {
-		return std::make_pair(root, 0);
+		return Tree();
 	}
-	std::pair<Node*, int> left = get_largest_bst_subtree_help(root->left);
-	std::pair<Node*, int> right = get_largest_bst_subtree_help(root->right);
+	
+	Tree left = get_largest_bst_subtree_help(root->left);
+	Tree right = get_largest_bst_subtree_help(root->right);
 
 	/*
 		за да можем да подобрим отговора,
@@ -98,13 +106,18 @@ std::pair<Node*, int> get_largest_bst_subtree_help(Node* root) {
 		корена на дясното поддърво да е по-голям или равен на текущия елемент.
 	*/
 
-	if (left.first == root->left &&
-		right.first == root->right &&
-		(is_leaf(root->left) || root->left->value <= root->value) &&
-		(is_leaf(root->right) || root->right->value >= root->value)) {
-		return std::make_pair(root, left.second + right.second + 1);
+	if (left.root == root->left &&
+		right.root == root->right &&
+		(is_leaf(root->left) || left.max <= root->value) &&
+		(is_leaf(root->right) || right.min >= root->value)) {
+		return Tree(
+			root, 
+			1 + left.count + right.count, 
+			is_leaf(root->left) ? root->value : left.min,
+			is_leaf(root->right) ? root->value : right.max
+		);
 	}
-	return left.second < right.second ? right : left;
+	return left.count < right.count ? right : left;
 }
 
 //O(N)
