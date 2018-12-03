@@ -122,5 +122,5 @@ Tree get_largest_bst_subtree_help(Node* root) {
 
 //O(N)
 Node* get_largest_bst_subtree_smart(Node* root) {
-	return get_largest_bst_subtree_help(root).first;
+	return get_largest_bst_subtree_help(root).root;
 }
