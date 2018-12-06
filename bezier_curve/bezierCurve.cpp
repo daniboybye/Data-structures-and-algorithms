@@ -1,15 +1,14 @@
 #include "bezierCurve.h"
 #include "deCasteljau.h"
 
-#include <cassert>
-#include <algorithm>
-
 #define CURVE_WIDTH 4
 #define CURVE_COLOR 0.0 , 255.0, 0.0
 
-void BezierCurve::createCurve(const std::vector<Point> &points, std::vector<Point> &helpVector)
+void BezierCurve::createCurve(const std::vector<Point> &points)
 {
-	DeCasteljau(points, pointsOfTheCurve, helpVector).method();
+	if (points.size() > 1) {
+		DeCasteljau(points, pointsOfTheCurve, helpVector).method();
+	}
 }
 
 void BezierCurve::draw() const

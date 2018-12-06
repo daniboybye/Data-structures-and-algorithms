@@ -9,7 +9,7 @@
 class BezierCurve
 {
 public:
-	void createCurve(const std::vector<Point> &,std::vector<Point>&);
+	void createCurve(const std::vector<Point>&);
 	void draw() const;
 
 	inline void scaling(const Point::type x, const Point::type y)
@@ -18,7 +18,8 @@ public:
 	}
 
 private:
-	std::vector< Point > pointsOfTheCurve;
+	std::vector<Point> pointsOfTheCurve;
+	std::vector<Point> helpVector;
 };
 
 #endif 
